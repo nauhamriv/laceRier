@@ -1,4 +1,5 @@
 Program LuasDaerah;
+{ Menghitung luasan daerah yang berada di bawah kurva }
 Uses crt;
 Var
 	m , n , e , d : real;
