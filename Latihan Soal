@@ -1,0 +1,97 @@
+PROGRAM SOAL1
+KAMUS
+	constant NMax : integer = 100
+	type MatKul : < KodeMK : integer ,
+					NamaMk : string ,
+					Pengajar : string ,
+					JmlPeserta : integer[0..100] >
+	type TabMatKul : < TM : array [1..NMax] of MatKul ,
+						NELMT : integer >
+	
+	function PengajarMK (P : string , T : TabMatKul) --> integer
+	{ Mencetak indeks terakhir dimana P berada pada TabMatKul }
+	KAMUS
+		i : integer
+	ALGORITMA FUNGSI
+		if (T.NELMT <> 0) then
+			i <-- T.NELMT
+			while (T.TM[i].Pengajar <> P) and (i > 0) do
+				if (T.TM[i].Pengajar <> P) then
+					i <-- i - 1
+			{ Indeks P telah ditemukan }
+			if ( i > 0 ) then
+				PengajarMK --> i
+			else
+				PengajarMK --> 0
+	
+	procedure WriteKuliahKosong( input T : TabMatKul)
+	{ Mencetak semua komponen Mata Kuliah dengan jumlah peserta = 0 }
+	KAMUS
+		i : integer
+	ALGORITMA PROSEDUR
+		if (T.NELMT = 0) then
+			output("Tidak ada data")
+		else
+			i traversal [1..T.NELMT]
+				if (T.TM[i].JmlPeserta = 0) then
+					output(T.TM[i].KodeMK)
+					output(T.TM[i].NamaMk)
+					output(T.TM[i].Pengajar)
+	
+	procedure UpdateMatKul(input/output T : TabMatKul , input N : integer)
+	{ Mengupdate semua komponen Jumlah peserta menjadi N }
+	KAMUS
+		i : integer
+	ALGORITMA PROSEDUR
+		if (T.NELMT <> 0) then
+			i traversal [1..T.NELMT]
+				T.TM[i].JmlPeserta <-- N
+	
+	procedure SortJmlPeserta(input/output T : TabMatKul , asc : boolean)
+	{ Mengurutkan Mata Kuliah berdasarkan jumlah peserta mata kuliah }
+	KAMUS
+		i : integer
+		Pass : integer
+		Temp : MatKul
+		j : integer
+	ALGORITMA PROSEDUR
+		if (T.NELMT <> 0) then
+			if (asc = true) then
+				Pass traversal [1..T.NELMT-1]
+					i <-- Pass
+					j traversal [Pass+1..T.NELMT]
+						if (T.TM[i].JmlPeserta > T.TM[j].JmlPeserta) then
+							i <-- j
+					{ Selesai mencari indeks dengan jumlah peserta terkecil }
+					Temp <-- T.TM[i].JmlPeserta
+					T.TM[i].JmlPeserta <-- T.TM[Pass].JmlPeserta
+					T.TM[Pass].JmlPeserta <-- Temp
+			else
+				Pass traversal [1..T.NELMT-1]
+					i <-- Pass
+					j traversal [Pass+1..T.NELMT]
+						if (T.TM[i].JmlPeserta < T.TM[j].JmlPeserta) then
+							i <-- j
+					{ Selesai mencari indeks dengan jumlah peserta terkecil }
+					Temp <-- T.TM[i].JmlPeserta
+					T.TM[i].JmlPeserta <-- T.TM[Pass].JmlPeserta
+					T.TM[Pass].JmlPeserta <-- Temp
+	
+	procedure IsiTabMatKul(input/output T : TabMatKul)
+	{ Menambahkan komponen matkul kedalam tabel T }
+	KAMUS
+		i : integer
+		Komponen : MatKul
+		Neff : integer
+	ALGORITMA PROSEDUR
+		if (T.NELMT = NMax) then
+			output("Tabel penuh")
+		else
+			input(Komponen)
+			Neff <-- T.NELMT
+			while (Komponen.KodeMK <> "XX9999") and (T.NELMT <= NMax) do
+				Neff <-- Neff + 1
+				T.TM[Neff] <-- Komponen
+				input(Komponen)
+			{ user telah menginput "XX9999" atau T sudah penuh }
+			T.NELMT <-- Neff
