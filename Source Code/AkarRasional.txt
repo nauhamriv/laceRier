@@ -1,0 +1,43 @@
+Program AkarRasional;
+{ Menentukan apakah suatu akar kuadrat x merupakan bilangan
+rasional atau tidak }
+{ Kamus }
+Var
+	x : integer;
+	Quit : boolean;
+	Ans : char;
+	function Rasional( x : integer ) : boolean;
+	{ Mengecek apakah akar kuadrat dari x merupakan bilangan rasional atau tidak }
+	{ Algoritma Fungsi }
+	Begin
+		if ( sqrt(x) = round( sqrt(x) ) ) then
+		begin
+			Rasional := true;
+		end else
+		begin
+			Rasional := false;
+		end;
+	end;
+{ Algoritma Program Utama }
+Begin
+	Quit := False;
+	repeat
+		write('Input isi di dalam akar kuadrat : '); readln(x);
+		if ( Rasional(x) = true ) then
+		begin
+			writeln('Akar dari ',x,' merupakan akar rasional');
+			writeln('Nilai dari akar ',x,' adalah ',sqrt(x):0:0 );
+		end else
+		begin
+			writeln('Akar dari ',x,' bukan merupakan akar rasional');
+			writeln('Nilai dari akar ',x,' adalah ',sqrt(x):0:16 );
+		end;
+		writeln('Tekan apapun untuk lanjut');
+		writeln('Tekan tombol "n" atau "N" untuk berhenti');
+		write('Coba lagi ? '); readln(Ans);
+		if ( Ans = 'n' ) or ( Ans = 'N' ) then
+		begin
+			Quit := True;
+		end;
+	until ( Quit = True );
+End.

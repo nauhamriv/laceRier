@@ -1,0 +1,75 @@
+Program FaktorPrima;
+{ Menentukan faktor prima dari suatu bilangan yang >= 1 }
+{ Kamus }
+Var
+	x : integer;
+	i : integer;
+	l, m , n : integer;
+	Opt : char;
+	Quit : boolean;
+	function Prime ( a : integer ) : boolean;
+	{ Menentukan apakah suatu bilangan merupakan bilangan prima atau tidak }
+	{ Algoritma Fungsi }
+	Begin
+		m := 0;
+		for i := 1 to a do
+		begin
+			if ( a mod i = 0 ) then
+			begin
+				m := m + 1;
+			end;
+			if ( m = 2 ) then
+			begin
+				Prime := true;
+			end else
+			begin
+				Prime := false;
+			end;
+		end;
+	end;
+{ Algoritma Utama }
+Begin
+	repeat
+		l := 0;
+		write('Input bilangan : '); readln(x);
+		for n := 1 to x do
+		begin
+			if ( x mod n = 0 ) then
+			begin
+				if ( Prime(n) = true ) then
+				begin
+					l := l + 1;
+				end;	
+			end;
+		end;
+		if ( l <> 0 ) then
+		begin
+			writeln('Faktor prima dari ',x,' berjumlah ',l);
+			for n := 1 to x do
+			begin
+				if ( x mod n = 0 ) then
+				begin
+					if ( Prime(n) = true ) then
+					begin
+						writeln('Faktor prima dari ',x,' adalah ',n);
+						l := l + 1;
+					end;	
+				end;
+			end;
+		end else
+		begin
+			writeln(x,' tidak memiliki faktor prima');
+		end;
+		writeln('Try Again? '); readln(Opt);
+			if ( Opt = 'n' ) or ( Opt = 'N' ) then
+			begin
+				Quit := True;
+			end else
+			begin
+				Quit := False;
+			end;
+	until ( Quit = True );
+End.
+	
+		
+	

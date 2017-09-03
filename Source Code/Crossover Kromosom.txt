@@ -1,0 +1,59 @@
+Program DuaKromosom;
+{Menerima input berupa A,G,C,T dari pengguna dan menyimpannya dalam array character
+yang direpresentasikan sebagai kromosom dengan nukleotida sebanyak 50}
+Var
+	KM : array [1..15] of char;
+	KF : array [1..15] of char;
+	Temp : array [1..15] of char;
+	i , x : integer;
+Begin
+	writeln('Masukkan elemen kromosom M!');
+	for i := 1 to 15 do
+	begin
+		readln( KM[i] ); { Mengisi kromosom M }
+	end;
+	writeln('Masukkan elemen kromosom K!');
+	for i := 1 to 15 do
+	begin
+		readln( KF[i] ); { Mengisi kromosom K }
+	end;
+	writeln('Elemen Kromosom M adalah : ');
+	for i:= 1 to 15 do
+	begin
+		write( KM[i] ,' '); { Menulis ulang kromosom M }
+	end;
+	writeln;
+	writeln('Elemen Kromosom K adalah : ');
+	for i := 1 to 15 do
+	begin
+		write( KF[i] ,' '); { Menulis ulang kromosom K }
+	end;
+	writeln;
+	repeat
+		write('Cross-over di indeks ke-'); readln(x); { Membaca input starting indeks untuk crossover }
+		if ( x < 1 ) or ( x > 15 ) then
+		begin
+			writeln('Masukkan nilai indeks antara 1-15 !');
+		end;
+	until ( x >= 1) and ( x <= 15 );
+	for i := 1 to 15 do
+	begin
+		Temp[i] := KM[i]; { Menampung elemen kromosom M }
+	end;
+	for i := x to 15 do 
+	begin
+		KM[i] := KF[i]; { Cross-over }
+		KF[i] := Temp[i]; { Cross-over }
+	end;
+	writeln('Kromosom M yang baru : ');
+	for i := 1 to 15 do
+	begin
+		write( KM[i],' ');
+	end;
+	writeln;
+	writeln('Kromosom K yang baru : ');
+	for i := 1 to 15 do
+	begin
+		write( KF[i],' ');
+	end;
+End.

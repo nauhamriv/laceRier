@@ -1,0 +1,36 @@
+Program Kuadran;
+{Menerima input koordinat dan menentukan
+kuadran dari koordinat tersebut}
+uses crt;
+{KAMUS}
+type
+        Point = record
+                x : integer;
+                y : integer;
+        end;
+var
+        p : point;
+{ALGORITMA}
+Begin
+        write('Input absis : '); readln(p.x);
+        write('Input ordinat : '); readln(p.y);
+        writeln('Koordinat (',p.x,',',p.y,') ');
+        if (p.x=0) or (p.y=0) then
+        begin
+                writeln('tak berada di kuadran apapun');
+        end else if (p.x>0) and (p.y>0) then
+        begin
+                writeln('berada di kuadran 1');
+        end else if (p.x<0) and (p.y>0) then
+        begin
+                writeln('berada di kuadran 2');
+        end else if (p.x<0) and (p.y<0) then
+        begin
+                writeln('berada di kuadran 3');
+        end else if (p.x>0) and (p.y<0) then
+        begin
+                writeln('berada di kuadran 4');
+        end;
+        readln;
+End.
+

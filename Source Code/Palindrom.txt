@@ -1,0 +1,41 @@
+Program PalindromKata;
+{ Menentukan apakah suatu kata merupakan palindrom atau tidak }
+{ Kamus }
+Var
+	i : integer;
+	Kata : string;
+	m : integer;
+	Ans : char;
+	function Palindrome ( x : string ) : boolean;
+	{ Menentukan kata yang merupakan palindrom }
+	Begin
+		m := 0;
+		for i := 1 to ( length(x) div 2 ) do
+		begin
+			if ( x[i] = x[ length(x)- i + 1 ] ) then
+			begin
+				m := m + 1;
+			end;
+		end;
+		if ( m = length(x) div 2 ) then
+		begin
+			Palindrome := True;
+		end else
+		begin
+			Palindrome := False;
+		end;
+	end;
+{ Algoritma }
+Begin
+	repeat
+	write('Input kata : '); readln(Kata);
+	if ( Palindrome(Kata) = False ) then
+	begin
+		writeln(Kata,' bukan palindrom ');
+	end else
+	begin
+		writeln(Kata,' merupakan palindrom ');
+	end;
+	write('Ingin mencoba kata yang lain? <y/n> '); readln(Ans);
+	until ( Ans = 'n');
+End.

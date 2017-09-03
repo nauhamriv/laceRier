@@ -1,0 +1,34 @@
+Program NSeru;
+Var
+	a : integer;
+	NFaktorial : longint;
+	Ans : char;
+	function Faktorial( a: integer ): int64;
+	Var
+		i : integer;
+		x : longint;
+	Begin
+		if ( a = 1 ) or ( a = 0 ) then { Menentukan nilai dari 0! dan 1! }
+		begin
+			Faktorial := 1;
+		end else
+		begin
+			x := a;
+			for i := ( a - 1 ) downto 1 do
+			begin
+				x := x * i ; { Menghitung a! dengan a <> 0 atau a <> 1 }
+			end;
+			Faktorial := x;
+		end;
+	End;
+Begin
+	repeat
+		repeat
+			write('Input nilai (a) : '); readln(a); { Untuk mengecek apakah bilangan yang diinput user sudah merupakan bilangan >= 0 }
+		until ( a >= 0 );
+		NFaktorial := Faktorial(a);
+		writeln(a,'! nilainya adalah ',NFaktorial);
+		write('Ingin mencoba lagi? '); readln(Ans);
+	until ( Ans = 'n' ); { Mengulang apakah user ingin mencoba ulang program ini }
+End.
+	

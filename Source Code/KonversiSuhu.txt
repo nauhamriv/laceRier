@@ -1,0 +1,32 @@
+Program KonversiSuhu;
+{Menerima input suhu dalam derajat celcius,
+user memilih satu kode konversi 'F','R','K'
+dan menuliskan ke layar hasil konversi suhu tersebut}
+{KAMUS}
+Var
+        TC : Integer;
+        Kode : char;
+        Suhu : real;
+{ALGORITMA}
+Begin
+        write('Input suhu dalam Celcius : '); readln(TC);
+        writeln('Konversi ke Fahrenheit, input "F"');
+        writeln('Konversi ke Reamur, input "R"');
+        writeln('Konversi ke Kelvin, input "K"');
+        write('Pilihan user : '); readln(Kode);
+        case Kode of
+                'F' : begin
+                      Suhu := (9/5 * TC) + 32 ;
+                      writeln(TC,' Celcius = ',Suhu:0:1,' Fahrenheit');
+                      end;
+                'R' : begin
+                      Suhu := 4/5 * TC ;
+                      writeln(TC,' Celcius = ',Suhu:0:1,' Reamur');
+                      end;
+                'K' : begin
+                      Suhu := TC + 273 ;
+                      writeln(TC,' Celcius = ',Suhu:0:1,' Kelvin');
+                      end;
+        end;
+        readln;
+End.

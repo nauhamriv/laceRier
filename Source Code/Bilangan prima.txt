@@ -1,0 +1,39 @@
+Program Prima;
+{ mengecek apakah suatu bilangan merupakan bilangan prima
+atau bukan }
+Var
+        N : integer;
+        x : integer;
+        i : integer;
+        j : integer;
+        m : integer;
+Begin
+        writeln('Masukkan nilai N !');
+        readln(N);
+        for i := 1 to N do
+        begin
+                m := 0;
+                write('Input nilai x : '); readln(x);
+                if ( x <= 0 ) then
+                begin
+                        writeln(x,' bukan merupakan bilangan prima');
+                end else
+                begin
+                        for j := 1 to x do
+                        begin
+                                if ( x mod j = 0 ) then { mengecek berapa sisa x jika membagi bilangan sebelum dirinya dan dirinya sendiri }
+                                begin
+                                m := m + 1; { menghitung berapa banyak bilangan yang habis dibagi oleh x }
+                                end;
+                        end;
+                        if ( m = 2 ) then { m = 2 menyatakan bahwa bilangan x hanya habis membagi 2 bilangan saja, yaitu angka 1 dan dirinya sendiri }
+                        begin
+                                writeln(x,' merupakan bilangan prima');
+                        end else
+                        begin
+                                writeln(x,' bukan merupakan bilangan prima');
+                        end;
+                end;
+        end;
+        readln;
+End.

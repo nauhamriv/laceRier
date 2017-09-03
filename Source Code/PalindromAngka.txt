@@ -1,0 +1,121 @@
+Program PalindromAngka;
+{ Menentukan apakah suatu bilangan di dalam rentang 0<=x<=10000 merupakan palindrom atau tidak }
+{ Kamus }
+Var
+	Angka : longint;
+	m : integer;
+	Ans : char;
+	function digit ( x : longint ) : integer;
+	{ Menentukan banyak digit dari angka }
+	{ Algoritma Fungsi }
+	Begin
+		m := 1;
+		while ( x div 10 > 0 ) do
+		begin
+			m := m + 1;
+			x := x div 10;
+		end;
+		digit := m;
+	end;
+	function Palindrome( x : longint ) : boolean;
+	{ Menentukan apakah suatu angka merupakan palindrom }
+	{ Algoritma Fungsi }
+	Begin
+		case digit(x) of
+			1 : begin
+				Palindrome := True;
+				end;
+			2 : begin
+				m := 0;
+				if ( x div 10 = x mod 10 ) then
+				begin
+					m := m + 1;
+				end;
+				if ( m = 1 ) then
+				begin
+					Palindrome := True;
+				end else 
+				begin
+					Palindrome := False;
+				end;
+				end;
+			3 : begin
+				m := 0;
+				if ( x div 100 = x mod 10 ) then
+				begin
+					m := m + 1;
+				end;
+				if ( m = 1 ) then
+				begin
+					Palindrome := True;
+				end else 
+				begin
+					Palindrome := False;
+				end;
+				end;
+			4 : begin
+				m := 0;
+				if ( x div 1000 = x mod 10 ) and ( ( x mod 1000 ) div 100 = ( x mod 100 - x mod 10 ) div 10 ) then
+				begin
+					m := 2;
+				end;
+				if ( m = 2 ) then
+				begin
+					Palindrome := True;
+				end else 
+				begin
+					Palindrome := False;
+				end;
+				end;
+			5 : begin
+				m := 0;
+				if ( x div 10000 = x mod 10 ) and ( ( x mod 10000) div 1000   =  x mod 100 - x mod 10  ) then
+				begin
+					m := 2;
+				end;
+				if ( m = 2 ) then
+				begin
+					Palindrome := True;
+				end else 
+				begin
+					Palindrome := False;
+				end;
+				end;
+			6 : begin
+				m := 0;
+				if ( x div 100000 = x mod 10 ) and ( ( x mod 100000 )  div 10000 = ( x mod 100 - x mod 10 ) div 10 ) and ( x mod 10000 = ( x mod 1000 - x mod 100 ) div 100 ) then
+				begin
+					m := 3;
+				end;
+				if  ( m = 3 ) then
+				begin
+					Palindrome := True;
+				end else
+				begin
+					Palindrome := False;
+				end;
+				end;
+		end;
+	end;
+{ Algoritma Program Utama }
+Begin
+	repeat
+		repeat
+			write('Input angka di rentang 0 sampai 99999 : '); readln(Angka);
+			if ( Angka < 0 ) or ( Angka > 99999 ) then
+			begin
+				writeln('Input harus berada di rentang 0 dan 99999 !');
+			end;
+		until ( Angka >= 0 ) and ( Angka <= 99999 );
+		if ( Palindrome(Angka) = True ) then
+		begin
+			writeln(Angka,' merupakan palindrom ');
+		end else
+		begin
+			writeln(Angka,' bukan palindrom ');
+		end;
+		writeln('Press any key to continue');
+		writeln('Press "n" or "N" to exit');
+		writeln('Coba lagi? '); readln(Ans);
+	until ( Ans = 'n' ) or ( Ans = 'N' );
+End.
